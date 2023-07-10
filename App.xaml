@@ -1,0 +1,14 @@
+﻿<Application x:Class="FileAnalizer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FileAnalizer"
+             xmlns:v ="clr-namespace:FileAnalizer.Views"
+             xmlns:vm ="clr-namespace:FileAnalizer.ViewModels"
+             StartupUri="MainWindow.xaml">
+    
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type vm:FileViewModel}">
+            <v:FileWindow/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
