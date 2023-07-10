@@ -17,13 +17,14 @@
                     <RowDefinition Height="300"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding FileText}"/>
-                <Button Grid.Row="1" Margin="40 0" Content="Save" FontSize="25"/>
+                <TextBox Grid.Row="0" Text="{Binding FileText}"/>
+                <Button Command="{Binding SaveCommand}" Grid.Row="1" Margin="40 10" Content="Save" FontSize="25"/>
         </Grid>
         <StackPanel Grid.Column="1">
             <Label Content="Files" FontSize="25" HorizontalAlignment="Center"/>
-            <ListBox x:Name="listBox" ItemsSource="{Binding Files}" />
-            <Button Content="Open"/>
+            <ListBox x:Name="ListBox" ItemsSource="{Binding Files}"  SelectionMode="Extended"
+                SelectedItem="{Binding SelectedItem}" />
+            <Button Command="{Binding OpenCommand}" Content="Open"/>
         </StackPanel>
     </Grid>
 </UserControl>
