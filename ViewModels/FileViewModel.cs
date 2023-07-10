@@ -15,14 +15,15 @@ namespace FileAnalizer.ViewModels;
 public class FileViewModel:ViewModelBase
 {
     private readonly IMessenger messenger;
-    private string folderAppData;
     public FileViewModel(IMessenger messenger)
     {
         this.messenger = messenger;
     }
+
     #region Props
 
     ObservableCollection<string> files = File.GetFiles();
+    private string folderAppData = File.FolderPath;
     public ObservableCollection<string> Files
     {
         get { return files; }
@@ -75,7 +76,7 @@ public class FileViewModel:ViewModelBase
                 try
                 { 
                     FileText = string.Empty;
-                    using (StreamReader sr = new StreamReader(@$"App_Data\{selectedItem}"))
+                    using (StreamReader sr = new StreamReader(@$"{folderAppData}\{selectedItem}"))
                     {
                         string line;
                         while ((line = sr.ReadLine()) != null)
@@ -96,7 +97,7 @@ public class FileViewModel:ViewModelBase
     }
     void SaveChanges()
     {
-        using (StreamWriter sw = new StreamWriter(@$"App_Data\{selectedItem}")) 
+        using (StreamWriter sw = new StreamWriter(@$"{folderAppData}\{selectedItem}")) 
         {
             sw.WriteLine(this.FileText);
         }

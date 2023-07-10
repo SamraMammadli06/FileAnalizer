@@ -11,11 +11,13 @@ using static System.Net.WebRequestMethods;
 namespace FileAnalizer;
 public class File
 {
+    public static string FolderPath { get; set; }
     public static ObservableCollection<string> GetFiles()
     {
-        string projectFolder = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
-        string folderAppData = Path.Combine(projectFolder, "Debug\\net6.0-windows\\App_Data");
+        string projectFolder = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
+        string folderAppData = Path.Combine(projectFolder, "App_Data");
         {
+            FolderPath = folderAppData;
             if (Directory.Exists(folderAppData))
             {
                 ObservableCollection<string> files =new ObservableCollection<string>();
