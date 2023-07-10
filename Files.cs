@@ -21,7 +21,7 @@ public class File
             if (Directory.Exists(folderAppData))
             {
                 ObservableCollection<string> files =new ObservableCollection<string>();
-                foreach (string file in Directory.EnumerateFiles(folderAppData, "*.txt"))
+                foreach (string file in Directory.EnumerateFiles(folderAppData))
                 {
                     var f = file.Split("\\");
                     var n= f.Count()-1;

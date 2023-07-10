@@ -35,11 +35,19 @@ public class FileViewModel:ViewModelBase
         get { return filetext; }
         set => base.PropertyChange(out filetext, value);
     }
+
     private string? selectedItem;
     public string? SelectedItem
     {
         get { return selectedItem; }
         set => base.PropertyChange(out selectedItem, value);
+    }
+
+    private int progressValue;
+    public int ProgressValue
+    {
+        get { return progressValue; }
+        set => base.PropertyChange(out progressValue, value);
     }
     #endregion
 
@@ -97,10 +105,14 @@ public class FileViewModel:ViewModelBase
     }
     void SaveChanges()
     {
-        using (StreamWriter sw = new StreamWriter(@$"{folderAppData}\{selectedItem}")) 
-        {
-            sw.WriteLine(this.FileText);
+        var thread = new Thread(() => { 
+            using (StreamWriter sw = new StreamWriter(@$"{folderAppData}\{selectedItem}")) 
+            {
+                sw.WriteLine(this.FileText);
+            }
         }
+        );
+        thread.Start();
 
     }
     #endregion
