@@ -8,6 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App_Data\file1.txt" />
+    <None Remove="App_Data\file2.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="App_Data\file1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\file2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SimpleInjector" Version="5.4.1" />
   </ItemGroup>
 
